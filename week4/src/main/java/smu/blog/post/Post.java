@@ -16,14 +16,6 @@ public class Post {
         return postId;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
     public void changeTitleAndContent(String title, String content) {
         this.title = title;
         this.content = content;
