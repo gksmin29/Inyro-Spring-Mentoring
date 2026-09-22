@@ -12,9 +12,11 @@ public class Post {
         this.content = content;
     }
 
-    public Long getPostId() {
-        return postId;
-    }
+    public Long getPostId() { return postId; }
+
+    public String getTitle() { return title; }
+
+    public String getContent() { return content; }
 
     public void changeTitleAndContent(String title, String content) {
         this.title = title;
