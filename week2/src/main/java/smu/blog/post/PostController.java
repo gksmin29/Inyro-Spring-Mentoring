@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class PostController {
 
     private List<Post> postList = new ArrayList<>();
