@@ -16,21 +16,22 @@ public class Post {
     @Column(name = "content")
     private String content;
 
+    // 추후에 Lombok을 사용해 축약할 수 있습니다.
     public Post() {}
 
+    // 추후에 Lombok을 사용해 축약할 수 있습니다.
     public Post(String title, String content) {
         this.title = title;
         this.content = content;
     }
 
+    // 추후에 Lombok을 사용해 축약할 수 있습니다.
     public Long getPostId() {
         return postId;
     }
-
     public String getTitle() {
         return title;
     }
-
     public String getContent() {
         return content;
     }

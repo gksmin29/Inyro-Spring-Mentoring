@@ -3,7 +3,6 @@ package smu.blog.post;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +12,7 @@ public class PostService {
 
     private final PostRepository postRepository;
 
+    // 추후에 Lombok을 사용해 축약할 수 있습니다.
     PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
@@ -22,6 +22,7 @@ public class PostService {
         String title = postCreateRequest.title();
         String content = postCreateRequest.content();
 
+        // 추후에 Lombok을 사용해 축약할 수 있습니다.
         Post post = new Post(title, content);
         postRepository.save(post);
 
@@ -30,9 +31,10 @@ public class PostService {
 
     // 포스트 단건 조회
     public Post getPost(Long id) {
-        Optional<Post> post = postRepository.findById(id);
-        if (post.isPresent()) {
-            return post.get();
+        Optional<Post> optionalPost = postRepository.findById(id);
+        // 추후에 Lombok을 사용하여 축약할 수 있습니다.
+        if (optionalPost.isPresent()) {
+            return optionalPost.get();
         }
         else {
             return null;
@@ -50,9 +52,10 @@ public class PostService {
         String title = postUpdateRequest.title();
         String content = postUpdateRequest.content();
 
-        Post post = getPost(postId);
-
-        if (post != null) {
+        Optional<Post> optionalPost = postRepository.findById(postId);
+        // 추후에 람다식을 사용해 축약할 수 있습니다.
+        if (optionalPost.isPresent()) {
+            Post post = optionalPost.get();
             post.changeTitleAndContent(title, content);
             return "수정 완료";
         }
@@ -60,9 +63,11 @@ public class PostService {
     }
 
     // 포스트 삭제
-    public String deletePost(Long id) {
-        Post post = getPost(id);
-        if (post != null) {
+    public String deletePost(Long postId) {
+        Optional<Post> optionalPost = postRepository.findById(postId);
+        // 추후에 람다식을 사용해 축약할 수 있습니다.
+        if (optionalPost.isPresent()) {
+            Post post = optionalPost.get();
             postRepository.delete(post);
             return "삭제 완료";
         }
