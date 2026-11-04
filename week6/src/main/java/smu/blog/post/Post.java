@@ -1,10 +1,6 @@
 package smu.blog.post;
 
 import jakarta.persistence.*;
-import smu.blog.comment.Comment;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 public class Post {
@@ -19,9 +15,6 @@ public class Post {
 
     @Column(name = "content")
     private String content;
-
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Comment> comments = new ArrayList<>();
 
     // 추후에 Lombok을 사용해 축약할 수 있습니다.
     public Post() {}
@@ -42,7 +35,6 @@ public class Post {
     public String getContent() {
         return content;
     }
-    public List<Comment> getComments() { return comments; }
 
     public void changeTitleAndContent(String title, String content) {
         this.title = title;

@@ -1,6 +1,8 @@
 package smu.blog.comment;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import smu.blog.post.Post;
 
 @Entity
@@ -16,6 +18,7 @@ public class Comment {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "post_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Post post;
 
     // 추후에 Lombok을 사용해 축약할 수 있습니다.
