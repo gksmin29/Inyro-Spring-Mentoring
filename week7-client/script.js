@@ -73,7 +73,7 @@ async function showPost(id) {
     const data = await readJson(res);
 
     if (!res.ok || !data || !data.isSuccess || !data.result) {
-      getOneResult.innerHTML = `<p class="post-detail-empty">해당 번호의 글이 없습니다.</p>`;
+      getOneResult.innerHTML = `<p class="post-detail-empty">${res.status} ${escapeHtml(errorText(data))}</p>`;
       lastViewedPostId = null;
       return;
     }
@@ -127,7 +127,7 @@ commentForm.addEventListener("submit", async (e) => {
     const data = await readJson(res);
 
     if (!res.ok || !data || !data.isSuccess) {
-      commentResult.textContent = `#${postId} ${errorText(data)}`;
+      commentResult.textContent = `${res.status} #${postId} ${errorText(data)}`;
       return;
     }
 
@@ -161,7 +161,7 @@ updateForm.addEventListener("submit", async (e) => {
     const data = await readJson(res);
 
     if (!res.ok || !data || !data.isSuccess) {
-      updateResult.textContent = `#${postId} ${errorText(data)}`;
+      updateResult.textContent = `${res.status} #${postId} ${errorText(data)}`;
       return;
     }
 
@@ -190,7 +190,7 @@ deleteForm.addEventListener("submit", async (e) => {
     const data = await readJson(res);
 
     if (!res.ok || !data || !data.isSuccess) {
-      deleteResult.textContent = `#${id} ${errorText(data)}`;
+      deleteResult.textContent = `${res.status} #${id} ${errorText(data)}`;
       return;
     }
 
@@ -217,7 +217,7 @@ async function loadPosts() {
     const data = await readJson(res);
 
     if (!res.ok || !data || !data.isSuccess) {
-      postList.innerHTML = `<li class="post-list-empty">실패: ${escapeHtml(errorText(data))}</li>`;
+      postList.innerHTML = `<li class="post-list-empty">${res.status} ${escapeHtml(errorText(data))}</li>`;
       return;
     }
 
